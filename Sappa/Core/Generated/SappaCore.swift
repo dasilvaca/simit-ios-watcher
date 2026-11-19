@@ -1494,7 +1494,16 @@ public struct CoreConfig: Equatable, Hashable {
      */
     public var captchaDifficulty: UInt32
     public var userAgent: String
+    /**
+     * Timeout for every request except a plate's first lookup.
+     */
     public var httpTimeoutMs: UInt32
+    /**
+     * Timeout for a plate's first lookup, which can return its whole history (a plate with
+     * ~1,000 records takes SIMIT ~20 s). Capped by the run's budget left; never below
+     * `http_timeout_ms`.
+     */
+    public var firstCheckTimeoutMs: UInt32
     public var jitterMinMs: UInt32
     public var jitterMaxMs: UInt32
     public var retryBackoffMs: [UInt32]
@@ -1515,13 +1524,22 @@ public struct CoreConfig: Equatable, Hashable {
          */captchaUrl: String?, 
         /**
          * Proof-of-work solutions per lookup; 0 uses the page's default (1).
-         */captchaDifficulty: UInt32, userAgent: String, httpTimeoutMs: UInt32, jitterMinMs: UInt32, jitterMaxMs: UInt32, retryBackoffMs: [UInt32], minPlateBudgetMs: UInt32) {
+         */captchaDifficulty: UInt32, userAgent: String, 
+        /**
+         * Timeout for every request except a plate's first lookup.
+         */httpTimeoutMs: UInt32, 
+        /**
+         * Timeout for a plate's first lookup, which can return its whole history (a plate with
+         * ~1,000 records takes SIMIT ~20 s). Capped by the run's budget left; never below
+         * `http_timeout_ms`.
+         */firstCheckTimeoutMs: UInt32, jitterMinMs: UInt32, jitterMaxMs: UInt32, retryBackoffMs: [UInt32], minPlateBudgetMs: UInt32) {
         self.dbPath = dbPath
         self.simitBaseUrl = simitBaseUrl
         self.captchaUrl = captchaUrl
         self.captchaDifficulty = captchaDifficulty
         self.userAgent = userAgent
         self.httpTimeoutMs = httpTimeoutMs
+        self.firstCheckTimeoutMs = firstCheckTimeoutMs
         self.jitterMinMs = jitterMinMs
         self.jitterMaxMs = jitterMaxMs
         self.retryBackoffMs = retryBackoffMs
@@ -1550,6 +1568,7 @@ public struct FfiConverterTypeCoreConfig: FfiConverterRustBuffer {
                 captchaDifficulty: FfiConverterUInt32.read(from: &buf), 
                 userAgent: FfiConverterString.read(from: &buf), 
                 httpTimeoutMs: FfiConverterUInt32.read(from: &buf), 
+                firstCheckTimeoutMs: FfiConverterUInt32.read(from: &buf), 
                 jitterMinMs: FfiConverterUInt32.read(from: &buf), 
                 jitterMaxMs: FfiConverterUInt32.read(from: &buf), 
                 retryBackoffMs: FfiConverterSequenceUInt32.read(from: &buf), 
@@ -1564,6 +1583,7 @@ public struct FfiConverterTypeCoreConfig: FfiConverterRustBuffer {
         FfiConverterUInt32.write(value.captchaDifficulty, into: &buf)
         FfiConverterString.write(value.userAgent, into: &buf)
         FfiConverterUInt32.write(value.httpTimeoutMs, into: &buf)
+        FfiConverterUInt32.write(value.firstCheckTimeoutMs, into: &buf)
         FfiConverterUInt32.write(value.jitterMinMs, into: &buf)
         FfiConverterUInt32.write(value.jitterMaxMs, into: &buf)
         FfiConverterSequenceUInt32.write(value.retryBackoffMs, into: &buf)

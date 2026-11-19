@@ -109,7 +109,9 @@ final class AppModel {
         guard !isChecking else { return }
         isChecking = true
         defer { isChecking = false }
-        guard let report = await service.run(trigger: .manual, budgetMs: 25_000) else {
+        // The app is open, so there is room for a new plate's first lookup (up to 30 s in the
+        // core); repeat lookups still time out at 10 s each.
+        guard let report = await service.run(trigger: .manual, budgetMs: 40_000) else {
             banner = .busy
             reload()
             return
