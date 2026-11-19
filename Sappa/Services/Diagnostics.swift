@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import SappaCore
 
 /// "Enviar reporte": a plain-text file the user shares by mail or share sheet. Plates are masked.
 enum Diagnostics {

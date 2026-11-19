@@ -1,6 +1,7 @@
 import Foundation
 import Observation
 import SwiftUI
+import SappaCore
 
 enum AppTab: Hashable { case home, fines, settings, add }
 

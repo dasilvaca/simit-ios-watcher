@@ -1,5 +1,6 @@
 import Foundation
 import WidgetKit
+import SappaCore
 
 /// One full background (or manual) check: core run → notifications → widget snapshot → next
 /// schedule. Shared by the BGTask handler and the "Revisar ahora" button.

@@ -1,5 +1,6 @@
 import BackgroundTasks
 import Foundation
+import SappaCore
 
 /// Picks the next check time ("roughly 6:00 and 18:00"); iOS decides the exact minute.
 enum CheckSchedule {

@@ -1,4 +1,5 @@
 import SwiftUI
+import SappaCore
 
 /// Yellow Colombian plate chip: 2 pt black border, radius 7, Space Grotesk bold.
 struct PlateChip: View {

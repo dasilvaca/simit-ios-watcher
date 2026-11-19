@@ -1,5 +1,6 @@
 import Foundation
 import UserNotifications
+import SappaCore
 
 /// The bits of `UNUserNotificationCenter` the notifier uses, so tests can swap in a fake.
 protocol NotificationScheduling: AnyObject {

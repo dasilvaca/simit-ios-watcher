@@ -1,4 +1,5 @@
 import Foundation
+import SappaCore
 
 /// The network side of the core's `HttpTransport`: URLSession with the system's default
 /// certificate checks, no cookies, no cache. The core calls `send` from a background thread and

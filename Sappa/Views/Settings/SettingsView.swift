@@ -1,6 +1,7 @@
 import StoreKit
 import SwiftUI
 import UserNotifications
+import SappaCore
 
 /// Screen 4 · Ajustes.
 struct SettingsView: View {

@@ -1,5 +1,6 @@
 import SwiftUI
 import UserNotifications
+import SappaCore
 
 @main
 struct SappaApp: App {

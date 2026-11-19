@@ -2,6 +2,7 @@ import Foundation
 import Testing
 import UserNotifications
 @testable import Sappa
+import SappaCore
 
 // MARK: - Fakes
 

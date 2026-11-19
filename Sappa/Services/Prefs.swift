@@ -1,4 +1,5 @@
 import Foundation
+import SappaCore
 
 /// User preferences owned by the shell (the core does no scheduling and formats no text).
 enum Prefs {

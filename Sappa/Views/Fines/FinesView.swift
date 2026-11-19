@@ -1,4 +1,5 @@
 import SwiftUI
+import SappaCore
 
 /// Multas tab: every fine, pending first.
 struct FinesView: View {

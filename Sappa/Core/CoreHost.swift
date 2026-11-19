@@ -1,4 +1,5 @@
 import Foundation
+import SappaCore
 
 /// Owns the one `SappaCore` instance and the directory its files live in.
 ///

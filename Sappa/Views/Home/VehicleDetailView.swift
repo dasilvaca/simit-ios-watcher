@@ -1,4 +1,5 @@
 import SwiftUI
+import SappaCore
 
 struct VehicleDetailView: View {
     let vehicleId: Int64

@@ -1,5 +1,6 @@
 #if DEBUG
 import Foundation
+import SappaCore
 
 /// DEBUG only: launch with `-SappaDemo YES` to get two seeded vehicles (one with a new fine)
 /// from a fake transport, in a throwaway directory. Never contacts SIMIT.

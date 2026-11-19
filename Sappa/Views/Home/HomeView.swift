@@ -1,4 +1,5 @@
 import SwiftUI
+import SappaCore
 
 /// Screens 3 and 5 · Inicio (all clear / new fine).
 struct HomeView: View {

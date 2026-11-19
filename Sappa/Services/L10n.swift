@@ -1,4 +1,5 @@
 import Foundation
+import SappaCore
 
 /// Localized text built from the core's codes and values (the core never returns sentences).
 enum L10n {

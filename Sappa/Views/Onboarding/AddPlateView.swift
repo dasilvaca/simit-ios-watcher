@@ -1,4 +1,5 @@
 import SwiftUI
+import SappaCore
 
 /// Screen 1 · Agregar placa. Also used from the "+" button.
 struct AddPlateView: View {

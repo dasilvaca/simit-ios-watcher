@@ -1,4 +1,5 @@
 import SwiftUI
+import SappaCore
 
 /// Screen 6 · Detalle del comparendo.
 struct FineDetailView: View {
