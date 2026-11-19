@@ -78,7 +78,7 @@
       "build-settings": {
         "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
         "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor",
-        "CODE_SIGN_ENTITLEMENTS": "Config/Sappa.entitlements",
+        "CODE_SIGN_ENTITLEMENTS": "$(SAPPA_ENTITLEMENTS)",
         "CODE_SIGN_STYLE": "Automatic",
         "CURRENT_PROJECT_VERSION": "1",
         "ENABLE_PREVIEWS": "YES",
@@ -180,6 +180,8 @@
     "PRODUCT_NAME[config=Debug]": "Sappa - Debug",
     "PRODUCT_NAME[config=Release]": "Sappa",
     "PROJECT_UNIQUE_VALUE": "W08HUTY2",
+    "SAPPA_ENTITLEMENTS[config=Debug]": "Config/Sappa.entitlements",
+    "SAPPA_ENTITLEMENTS[config=Release]": "Config/Sappa-Release.entitlements",
     "STRING_CATALOG_GENERATE_SYMBOLS": "YES",
     "SWIFT_ACTIVE_COMPILATION_CONDITIONS[config=Debug]": "DEBUG $(inherited)",
     "SWIFT_COMPILATION_MODE[config=Release]": "wholemodule",

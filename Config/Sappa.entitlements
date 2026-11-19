@@ -6,7 +6,5 @@
 	<array>
 		<string>group.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	</array>
-	<key>com.apple.developer.usernotifications.time-sensitive</key>
-	<true/>
 </dict>
 </plist>
