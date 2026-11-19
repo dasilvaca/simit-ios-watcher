@@ -20,7 +20,14 @@ final class FakeSimit: HttpTransport, @unchecked Sendable {
     }
 
     func send(request: HttpRequest) throws -> HttpResponse {
+        // Proof-of-work question service, asked right before each lookup.
+        if request.url.hasPrefix("https://qxcaptcha.fcm.org.co/") {
+            let question = #"{"error":false,"data":{"question":"51105c0550b068e4620513eea19d07a3","recommended_difficulty":2}}"#
+            return HttpResponse(status: 200, body: Data(question.utf8))
+        }
         let body = try JSONSerialization.jsonObject(with: request.body ?? Data()) as? [String: Any]
+        let dto = body?["reCaptchaDTO"] as? [String: Any]
+        precondition(dto?["response"] is String, "lookup without proof of work")
         let plate = body?["filtro"] as? String ?? ""
         return try lock.withLock {
             calls.append(plate)

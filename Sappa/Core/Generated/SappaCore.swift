@@ -1485,6 +1485,14 @@ public struct CoreConfig: Equatable, Hashable {
      * `None` uses the default SIMIT host. Must be https.
      */
     public var simitBaseUrl: String?
+    /**
+     * `None` uses SIMIT's proof-of-work service. Must be https.
+     */
+    public var captchaUrl: String?
+    /**
+     * Proof-of-work solutions per lookup; 0 uses the page's default (1).
+     */
+    public var captchaDifficulty: UInt32
     public var userAgent: String
     public var httpTimeoutMs: UInt32
     public var jitterMinMs: UInt32
@@ -1501,9 +1509,17 @@ public struct CoreConfig: Equatable, Hashable {
          */dbPath: String, 
         /**
          * `None` uses the default SIMIT host. Must be https.
-         */simitBaseUrl: String?, userAgent: String, httpTimeoutMs: UInt32, jitterMinMs: UInt32, jitterMaxMs: UInt32, retryBackoffMs: [UInt32], minPlateBudgetMs: UInt32) {
+         */simitBaseUrl: String?, 
+        /**
+         * `None` uses SIMIT's proof-of-work service. Must be https.
+         */captchaUrl: String?, 
+        /**
+         * Proof-of-work solutions per lookup; 0 uses the page's default (1).
+         */captchaDifficulty: UInt32, userAgent: String, httpTimeoutMs: UInt32, jitterMinMs: UInt32, jitterMaxMs: UInt32, retryBackoffMs: [UInt32], minPlateBudgetMs: UInt32) {
         self.dbPath = dbPath
         self.simitBaseUrl = simitBaseUrl
+        self.captchaUrl = captchaUrl
+        self.captchaDifficulty = captchaDifficulty
         self.userAgent = userAgent
         self.httpTimeoutMs = httpTimeoutMs
         self.jitterMinMs = jitterMinMs
@@ -1530,6 +1546,8 @@ public struct FfiConverterTypeCoreConfig: FfiConverterRustBuffer {
             try CoreConfig(
                 dbPath: FfiConverterString.read(from: &buf), 
                 simitBaseUrl: FfiConverterOptionString.read(from: &buf), 
+                captchaUrl: FfiConverterOptionString.read(from: &buf), 
+                captchaDifficulty: FfiConverterUInt32.read(from: &buf), 
                 userAgent: FfiConverterString.read(from: &buf), 
                 httpTimeoutMs: FfiConverterUInt32.read(from: &buf), 
                 jitterMinMs: FfiConverterUInt32.read(from: &buf), 
@@ -1542,6 +1560,8 @@ public struct FfiConverterTypeCoreConfig: FfiConverterRustBuffer {
     public static func write(_ value: CoreConfig, into buf: inout [UInt8]) {
         FfiConverterString.write(value.dbPath, into: &buf)
         FfiConverterOptionString.write(value.simitBaseUrl, into: &buf)
+        FfiConverterOptionString.write(value.captchaUrl, into: &buf)
+        FfiConverterUInt32.write(value.captchaDifficulty, into: &buf)
         FfiConverterString.write(value.userAgent, into: &buf)
         FfiConverterUInt32.write(value.httpTimeoutMs, into: &buf)
         FfiConverterUInt32.write(value.jitterMinMs, into: &buf)
